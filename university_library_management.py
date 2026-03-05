@@ -1,3 +1,4 @@
+import pandas as pd
 import sqlite3
 from faker import Faker
 import random
@@ -246,5 +247,15 @@ print("Total Authors:", cursor.execute("SELECT COUNT(*) FROM Authors").fetchone(
 print("Total Books:", cursor.execute("SELECT COUNT(*) FROM Books").fetchone()[0])
 print("Total Book Copies:", cursor.execute("SELECT COUNT(*) FROM Book_Copies").fetchone()[0])
 print("Total Loans:", cursor.execute("SELECT COUNT(*) FROM Loans").fetchone()[0])
+
+# Export tables to CSV
+
+tables = ["Students", "Authors", "Books", "Library_Branches", "Book_Copies", "Loans"]
+
+for table in tables:
+    df = pd.read_sql_query(f"SELECT * FROM {table}", conn)
+    df.to_csv(f"{table}.csv", index=False)
+
+print("CSV files exported successfully!")
 
 conn.close()
