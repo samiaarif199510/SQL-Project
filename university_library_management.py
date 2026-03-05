@@ -258,4 +258,8 @@ for table in tables:
 
 print("CSV files exported successfully!")
 
+<<<<<<< HEAD
 conn.close()
+=======
+conn.close()
+>>>>>>> 78bcf57685bb009244079be49fb6b73e05584abd
